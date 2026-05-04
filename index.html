@@ -1,0 +1,717 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AiVox — выстраиваем диалоги с вашей целевой аудиторией</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+            line-height: 1.6;
+            color: #1a1a1a;
+            background: #ffffff;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* Header */
+        header {
+            padding: 20px 0;
+            position: fixed;
+            width: 100%;
+            top: 0;
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            z-index: 1000;
+            border-bottom: 1px solid #f0f0f0;
+        }
+
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 24px;
+            font-weight: 700;
+            color: #2563eb;
+            text-decoration: none;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 30px;
+            list-style: none;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: #4b5563;
+            font-weight: 500;
+            transition: color 0.3s;
+        }
+
+        .nav-links a:hover {
+            color: #2563eb;
+        }
+
+        .cta-button {
+            background: #2563eb;
+            color: white;
+            padding: 12px 24px;
+            border-radius: 8px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: background 0.3s;
+        }
+
+        .cta-button:hover {
+            background: #1d4ed8;
+        }
+
+        /* Hero Section */
+        .hero {
+            padding: 160px 0 100px;
+            text-align: center;
+            background: linear-gradient(180deg, #f8fafc 0%, #ffffff 100%);
+        }
+
+        .hero h1 {
+            font-size: 56px;
+            font-weight: 800;
+            margin-bottom: 24px;
+            line-height: 1.1;
+            color: #1a1a1a;
+        }
+
+        .hero h1 span {
+            color: #2563eb;
+        }
+
+        .hero p {
+            font-size: 20px;
+            color: #6b7280;
+            max-width: 700px;
+            margin: 0 auto 40px;
+        }
+
+        .hero-buttons {
+            display: flex;
+            gap: 16px;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        .secondary-button {
+            background: white;
+            color: #2563eb;
+            padding: 12px 24px;
+            border-radius: 8px;
+            text-decoration: none;
+            font-weight: 600;
+            border: 2px solid #2563eb;
+            transition: all 0.3s;
+        }
+
+        .secondary-button:hover {
+            background: #eff6ff;
+        }
+
+        /* Formula Section */
+        .formula {
+            padding: 100px 0;
+            background: #ffffff;
+        }
+
+        .formula-card {
+            background: #f8fafc;
+            border-radius: 16px;
+            padding: 60px;
+            text-align: center;
+            max-width: 900px;
+            margin: 0 auto;
+        }
+
+        .formula-steps {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 20px;
+            margin-top: 40px;
+            flex-wrap: wrap;
+        }
+
+        .formula-step {
+            background: white;
+            padding: 20px 30px;
+            border-radius: 12px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+            font-weight: 600;
+            color: #2563eb;
+        }
+
+        .formula-arrow {
+            font-size: 24px;
+            color: #9ca3af;
+        }
+
+        /* What is not Section */
+        .not-section {
+            padding: 100px 0;
+            background: #f8fafc;
+        }
+
+        .section-title {
+            font-size: 42px;
+            font-weight: 700;
+            text-align: center;
+            margin-bottom: 60px;
+        }
+
+        .not-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+
+        .not-item {
+            background: white;
+            padding: 30px;
+            border-radius: 12px;
+            text-align: center;
+            color: #9ca3af;
+        }
+
+        .not-item::before {
+            content: "✕";
+            display: block;
+            font-size: 32px;
+            margin-bottom: 10px;
+            color: #ef4444;
+        }
+
+        /* Features Section */
+        .features {
+            padding: 100px 0;
+            background: #ffffff;
+        }
+
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 40px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .feature-card {
+            padding: 40px;
+            border-radius: 16px;
+            background: #f8fafc;
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+
+        .feature-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+        }
+
+        .feature-icon {
+            font-size: 48px;
+            margin-bottom: 20px;
+        }
+
+        .feature-card h3 {
+            font-size: 24px;
+            margin-bottom: 16px;
+            color: #1a1a1a;
+        }
+
+        .feature-card p {
+            color: #6b7280;
+            line-height: 1.8;
+        }
+
+        /* How it works */
+        .how-it-works {
+            padding: 100px 0;
+            background: #f8fafc;
+        }
+
+        .steps-container {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .step {
+            display: flex;
+            gap: 30px;
+            margin-bottom: 40px;
+            align-items: flex-start;
+        }
+
+        .step-number {
+            background: #2563eb;
+            color: white;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 700;
+            font-size: 20px;
+            flex-shrink: 0;
+        }
+
+        .step-content h4 {
+            font-size: 20px;
+            margin-bottom: 10px;
+        }
+
+        .step-content p {
+            color: #6b7280;
+        }
+
+        /* Pricing Section */
+        .pricing {
+            padding: 100px 0;
+            background: #ffffff;
+        }
+
+        .pricing-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            max-width: 1100px;
+            margin: 0 auto;
+        }
+
+        .pricing-card {
+            background: #f8fafc;
+            padding: 50px 40px;
+            border-radius: 16px;
+            text-align: center;
+            border: 2px solid transparent;
+            transition: all 0.3s;
+        }
+
+        .pricing-card:hover {
+            border-color: #2563eb;
+            transform: translateY(-5px);
+        }
+
+        .pricing-card.featured {
+            background: #2563eb;
+            color: white;
+        }
+
+        .pricing-card.featured h3,
+        .pricing-card.featured p {
+            color: white;
+        }
+
+        .pricing-card h3 {
+            font-size: 28px;
+            margin-bottom: 10px;
+        }
+
+        .pricing-card p {
+            color: #6b7280;
+            margin-bottom: 30px;
+        }
+
+        .pricing-features {
+            list-style: none;
+            margin-bottom: 30px;
+        }
+
+        .pricing-features li {
+            padding: 10px 0;
+            border-bottom: 1px solid #e5e7eb;
+        }
+
+        .pricing-card.featured .pricing-features li {
+            border-color: #3b82f6;
+        }
+
+        .pricing-features li:last-child {
+            border-bottom: none;
+        }
+
+        /* CTA Section */
+        .cta-section {
+            padding: 100px 0;
+            background: linear-gradient(135deg, #2563eb 0%, #1d4ed8 100%);
+            text-align: center;
+            color: white;
+        }
+
+        .cta-section h2 {
+            font-size: 42px;
+            margin-bottom: 20px;
+        }
+
+        .cta-section p {
+            font-size: 20px;
+            opacity: 0.9;
+            margin-bottom: 40px;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .cta-section .cta-button {
+            background: white;
+            color: #2563eb;
+            font-size: 18px;
+            padding: 16px 40px;
+        }
+
+        .cta-section .cta-button:hover {
+            background: #f8fafc;
+        }
+
+        /* Footer */
+        footer {
+            padding: 60px 0;
+            background: #1a1a1a;
+            color: #9ca3af;
+        }
+
+        .footer-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 30px;
+        }
+
+        .footer-logo {
+            font-size: 24px;
+            font-weight: 700;
+            color: white;
+        }
+
+        .footer-links {
+            display: flex;
+            gap: 30px;
+            list-style: none;
+        }
+
+        .footer-links a {
+            color: #9ca3af;
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+
+        .footer-links a:hover {
+            color: white;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .hero h1 {
+                font-size: 36px;
+            }
+
+            .hero p {
+                font-size: 18px;
+            }
+
+            .nav-links {
+                display: none;
+            }
+
+            .formula-steps {
+                flex-direction: column;
+            }
+
+            .formula-arrow {
+                transform: rotate(90deg);
+            }
+
+            .section-title {
+                font-size: 32px;
+            }
+
+            .features-grid,
+            .pricing-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <div class="container">
+            <nav>
+                <a href="#" class="logo">AiVox</a>
+                <ul class="nav-links">
+                    <li><a href="#formula">Как это работает</a></li>
+                    <li><a href="#features">Возможности</a></li>
+                    <li><a href="#pricing">Тарифы</a></li>
+                </ul>
+                <a href="#contact" class="cta-button">Начать бесплатно</a>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="container">
+            <h1>Выстраиваем диалоги<br>с <span>вашей целевой аудиторией</span></h1>
+            <p>AiVox — система управляемых бизнес-диалогов, которая находит клиентов, начинает разговор и доводит до сделки</p>
+            <div class="hero-buttons">
+                <a href="#contact" class="cta-button">Попробовать бесплатно</a>
+                <a href="#features" class="secondary-button">Узнать больше</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Formula Section -->
+    <section id="formula" class="formula">
+        <div class="container">
+            <div class="formula-card">
+                <h2 style="font-size: 32px; margin-bottom: 20px;">Главная формула AiVox</h2>
+                <p style="color: #6b7280; font-size: 18px;">Мы превращаем холодные контакты в горячих клиентов через осмысленный диалог</p>
+                <div class="formula-steps">
+                    <div class="formula-step">Найти аудиторию</div>
+                    <div class="formula-arrow">→</div>
+                    <div class="formula-step">Начать диалог</div>
+                    <div class="formula-arrow">→</div>
+                    <div class="formula-step">Понять интерес</div>
+                    <div class="formula-arrow">→</div>
+                    <div class="formula-step">Довести до действия</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- What AiVox is NOT -->
+    <section class="not-section">
+        <div class="container">
+            <h2 class="section-title">Чем AiVox НЕ является</h2>
+            <div class="not-grid">
+                <div class="not-item">CRM-система</div>
+                <div class="not-item">Простой чат-бот</div>
+                <div class="not-item">Массовая рассылка</div>
+                <div class="not-item">Парсер контактов</div>
+                <div class="not-item">База лидов</div>
+                <div class="not-item">Инструмент ради инструмента</div>
+            </div>
+            <p style="text-align: center; margin-top: 40px; color: #6b7280; font-size: 18px; max-width: 700px; margin-left: auto; margin-right: auto;">
+                AiVox — это система управляемых бизнес-диалогов. Мы строим путь до клиента через осмысленное общение, похожее на человеческое.
+            </p>
+        </div>
+    </section>
+
+    <!-- Features Section -->
+    <section id="features" class="features">
+        <div class="container">
+            <h2 class="section-title">Основные возможности</h2>
+            <div class="features-grid">
+                <div class="feature-card">
+                    <div class="feature-icon">🔍</div>
+                    <h3>Scout — поиск клиентов</h3>
+                    <p>Outbound-агент самостоятельно ищет потенциальных клиентов, извлекает контакты, определяет релевантность и начинает первый диалог. Telegram-first подход для быстрого старта.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">💬</div>
+                    <h3>Avi — AI-консультант</h3>
+                    <p>Inbound-агент работает на сайте как умный консультант: отвечает на вопросы, объясняет продукт, продаёт, собирает заявки и записывает на встречи.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">⚙️</div>
+                    <h3>Conversation Engine</h3>
+                    <p>Ядро системы — детерминированный движок диалогов без магии. Агенты решают что говорить, ядро решает как выполнять. Полностью проверяемо и надёжно.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">🐠</div>
+                    <h3>Аквариум — все диалоги</h3>
+                    <p>Единая страница всех диалогов: статусы лидов, история сообщений, ручной перехват, пауза AI, передача менеджеру. Полный контроль над процессом.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">🎯</div>
+                    <h3>Setup Agent</h3>
+                    <p>AI-настройщик поможет настроить AiVox через один диалог: ниша, ICP, оффер, скрипты, каналы, правила общения. Быстрый старт без сложностей.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">🏢</div>
+                    <h3>Мультикомпания</h3>
+                    <p>Ведите несколько бизнесов или проектов в одном аккаунте. Полная изоляция данных: настройки, лиды, диалоги и статистика для каждой компании отдельно.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- How it works -->
+    <section class="how-it-works">
+        <div class="container">
+            <h2 class="section-title">Как система выходит на ЛПР</h2>
+            <div class="steps-container">
+                <div class="step">
+                    <div class="step-number">1</div>
+                    <div class="step-content">
+                        <h4>Найти компанию</h4>
+                        <p>Система ищет компании по заданному Target Profile через поисковые системы, сайты, каталоги</p>
+                    </div>
+                </div>
+                <div class="step">
+                    <div class="step-number">2</div>
+                    <div class="step-content">
+                        <h4>Найти контакт</h4>
+                        <p>Извлекает Telegram, email, phone с сайта компании. Telegram — приоритетный канал для MVP</p>
+                    </div>
+                </div>
+                <div class="step">
+                    <div class="step-number">3</div>
+                    <div class="step-content">
+                        <h4>Начать диалог</h4>
+                        <p>Персонализированное первое сообщение на основе профиля компании и оффера</p>
+                    </div>
+                </div>
+                <div class="step">
+                    <div class="step-number">4</div>
+                    <div class="step-content">
+                        <h4>Определить ЛПР</h4>
+                        <p>Если контакт не ЛПР, система спрашивает: «Кто у вас отвечает за привлечение заявок?»</p>
+                    </div>
+                </div>
+                <div class="step">
+                    <div class="step-number">5</div>
+                    <div class="step-content">
+                        <h4>Довести до результата</h4>
+                        <p>Ведёт диалог до целевого действия: заявка, встреча, звонок, продажа</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Pricing Section -->
+    <section id="pricing" class="pricing">
+        <div class="container">
+            <h2 class="section-title">Простые тарифы</h2>
+            <p style="text-align: center; color: #6b7280; font-size: 18px; margin-bottom: 60px; max-width: 700px; margin-left: auto; margin-right: auto;">
+                Usage-based модель — платите за результативные действия системы, а не за доступ к интерфейсу
+            </p>
+            <div class="pricing-grid">
+                <div class="pricing-card">
+                    <h3>Starter</h3>
+                    <p>Для теста и малого бизнеса</p>
+                    <ul class="pricing-features">
+                        <li>Базовый лимит поисков</li>
+                        <li>Базовый лимит сообщений</li>
+                        <li>Все функции платформы</li>
+                        <li>1 компания</li>
+                        <li>Telegram-first</li>
+                    </ul>
+                    <a href="#contact" class="cta-button">Начать</a>
+                </div>
+                <div class="pricing-card featured">
+                    <h3>Growth</h3>
+                    <p>Для регулярного использования</p>
+                    <ul class="pricing-features">
+                        <li>Больше поисков</li>
+                        <li>Больше сообщений</li>
+                        <li>Приоритетная обработка</li>
+                        <li>До 5 компаний</li>
+                        <li>Расширенная аналитика</li>
+                    </ul>
+                    <a href="#contact" class="cta-button">Выбрать</a>
+                </div>
+                <div class="pricing-card">
+                    <h3>Scale</h3>
+                    <p>Для масштабирования</p>
+                    <ul class="pricing-features">
+                        <li>Большие объёмы</li>
+                        <li>API-доступ</li>
+                        <li>Командная работа</li>
+                        <li>Неограниченно компаний</li>
+                        <li>Расширенные лимиты</li>
+                    </ul>
+                    <a href="#contact" class="cta-button">Связаться</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section id="contact" class="cta-section">
+        <div class="container">
+            <h2>Готовы получить первых клиентов?</h2>
+            <p>AiVox найдёт вашу целевую аудиторию, начнёт разговор и доведёт до сделки. Оставьте заявку на ранний доступ.</p>
+            <a href="mailto:hello@aivox.com" class="cta-button">Запросить доступ</a>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-logo">AiVox</div>
+                <ul class="footer-links">
+                    <li><a href="#">О продукте</a></li>
+                    <li><a href="#">Документация</a></li>
+                    <li><a href="#">Блог</a></li>
+                    <li><a href="#">Контакты</a></li>
+                </ul>
+                <p style="color: #6b7280;">© 2024 AiVox. Все права защищены.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Smooth scroll for anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+
+        // Simple animation on scroll
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.opacity = '1';
+                    entry.target.style.transform = 'translateY(0)';
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('.feature-card, .pricing-card, .step').forEach(el => {
+            el.style.opacity = '0';
+            el.style.transform = 'translateY(20px)';
+            el.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
+            observer.observe(el);
+        });
+    </script>
+</body>
+</html>
